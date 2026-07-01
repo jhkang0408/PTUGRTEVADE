@@ -30,3 +30,8 @@ We provide the data via Google Drive:
 ## Data Import & Export
 
 _Coming soon._
+
+## Acknowledgements
+
+This repository contains pieces of code from the following repositories:
+- [AI4Animation: Deep Learning for Character Control](https://github.com/sebastianstarke/AI4Animation/tree/master)
