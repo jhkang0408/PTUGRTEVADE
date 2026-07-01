@@ -1,0 +1,16 @@
+# ---- OS / editor junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Python (DeepLearing) ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# ---- Logs / TensorBoard runs ----
+logs/
+runs/

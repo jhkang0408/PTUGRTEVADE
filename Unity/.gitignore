@@ -1,0 +1,57 @@
+# ============================================================
+# Unity-generated folders & files
+# ============================================================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Asset meta data should only be ignored when the corresponding asset is also ignored
+!/[Aa]ssets/**/*.meta
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/
+.gradle/
+.consulo/
+ExportedObj/
+
+# Auto-generated project files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Builds / packages
+*.apk
+*.aab
+*.unitypackage
+*.app
+sysinfo.txt
+crashlog.txt
+
+# ============================================================
+# Project-specific: exclude heavy data (kept out of the repo)
+# ============================================================
+/Export/
+/Motion Capture Data/
+/Assets/Data/Train/
+/Assets/Data/Train.meta
+/Assets/Data/Test/
+/Assets/Data/Test.meta
