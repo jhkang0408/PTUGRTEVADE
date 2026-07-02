@@ -29,7 +29,11 @@ Download the data from Google Drive and unzip each archive to the specified loca
 | [Motion Capture Data](https://drive.google.com/file/d/1EzcetggbN8AMRDQDppRYPFkCk7DHdYQO/view?usp=sharing) | Raw motion capture data | `Unity/` |
 | [Target Labeled Data](https://drive.google.com/file/d/1qqO5hcnfvh7bA3q22fnZ2oR4pdn2oCWR/view?usp=sharing) | Motion capture data with all targets labeled | `Unity/Assets/Data/` |
 
-## Data Import & Export
+## Data Import
+
+<video src="https://github.com/jhkang0408/PTUGRTEVADE/raw/main/Media/DataImport.mp4" controls muted width="100%"></video>
+
+## Data Export
 
 _Coming soon._
 
