@@ -130,6 +130,28 @@ data(raw)
         └── ...
 ```
 
+2\) Train TENet:
+
+```bash
+python train_TENet.py
+```
+
+3\) Train BP-GTNet:
+
+```bash
+python train_BP_GTNet.py
+```
+
+The default arguments of both scripts are already set to the configuration reported in the paper.
+
+To train on only a subset of categories, edit the `REPERTORIES` list in both `train_TENet.py` and `train_BP_GTNet.py` before running — for example:
+
+```python
+REPERTORIES = [{'repertorie': 'Pointing and gazing at a single target', 'num': 27},
+               {'repertorie': 'Pointing and gazing at two targets in sequence', 'num': 210},
+               {'repertorie': 'Pointing at a single target with gaze shift', 'num': 180}]
+```
+
 ## Evaluation
 
 _Coming soon._
