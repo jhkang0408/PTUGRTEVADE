@@ -31,7 +31,7 @@ Download the data from Google Drive and unzip each archive to the specified loca
 
 ## Data Import
 
-<video src="https://github.com/jhkang0408/PTUGRTEVADE/raw/main/Media/DataImport.mp4" controls muted width="100%"></video>
+![Data Import](Media/DataImport.gif)
 
 ## Data Export
 
