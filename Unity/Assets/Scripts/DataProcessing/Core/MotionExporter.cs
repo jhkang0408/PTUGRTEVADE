@@ -685,6 +685,7 @@ public abstract class MotionExporter : EditorWindow
 		bool editorIsPoint = Editor.IsPoint;
 		bool editorIsTrain = Editor.IsTrain;
 		bool editorMirroring = Editor.Mirroring;
+		string editorFolder = Editor.Folder;
 		Editor.Save = false;
 		Editor.SetTargetFramerate(Framerate);
 
@@ -701,6 +702,9 @@ public abstract class MotionExporter : EditorWindow
 			}
 
 			Editor.IsTrain = IsTrain;
+			// Point the editor at this category so its live visualization (target sphere
+			// size, derived from the folder name) matches the category being exported.
+			Editor.Folder = cat.Path;
 
 			int variantCount = (IsTrain && Mirrored) ? 2 : 1;
 			for (int v = 0; v < variantCount; v++)
@@ -800,6 +804,7 @@ public abstract class MotionExporter : EditorWindow
 		Editor.SetRandomSeed(editorSeed);
 		Editor.IsPoint = editorIsPoint;
 		Editor.IsTrain = editorIsTrain;
+		Editor.Folder = editorFolder;
 
 		StatusLabel = string.Empty;
 		Exporting = false;
