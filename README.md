@@ -45,6 +45,15 @@ Before getting started, please refer to the GIF below.
 
 ## Data Visualization
 
+In `Unity/Assets/Data/Scene.unity`, select the **MotionEditor** GameObject to play back the motion capture data and inspect the target-labeling information through its attached script.
+
+The table below illustrates the visualization:
+
+- **White spheres** are the target candidates.
+- When a candidate is labeled as a target, a colored sphere is rendered on top of it: **red** for the head target, **green** for the right-hand target, and **blue** for the left-hand target.
+- The head, right-hand, and left-hand **end-effectors** are rendered as red, green, and blue spheres with transformation arrows.
+- The **red**, **green**, and **blue** rays denote the gaze, the eye-finger ray (right hand), and the eye-finger ray (left hand), respectively.
+
 <table>
 <tr>
 <td><img src="Media/Explaining%20with%20pointing.gif" width="100%" alt="Explaining with pointing"></td>
