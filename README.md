@@ -51,8 +51,8 @@ The table below illustrates the visualization:
 
 - ⚪ **White spheres** are the target candidates.
 - When a candidate is labeled as a target, a colored sphere is rendered on top of it: 🔴 **red** for the head target, 🟢 **green** for the right-hand target, and 🔵 **blue** for the left-hand target.
-- The head, right-hand, and left-hand **end-effectors** are rendered as 🔴 red, 🟢 green, and 🔵 blue spheres with transformation arrows.
-- The 🔴 red, 🟢 green, and 🔵 blue rays denote the gaze, the eye-finger ray (right hand), and the eye-finger ray (left hand), respectively.
+- The head, right-hand, and left-hand **end-effectors** are rendered as 🔴 red, 🟢 green, and 🔵 blue spheres, each with a transformation gizmo (↕️↔️).
+- The **red**, **green**, and **blue** rays (↗️) denote the gaze, the eye-finger ray (right hand), and the eye-finger ray (left hand), respectively.
 
 <table>
 <tr>
