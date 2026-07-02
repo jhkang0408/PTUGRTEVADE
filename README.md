@@ -152,11 +152,11 @@ REPERTORIES = [{'repertorie': 'Pointing and gazing at a single target', 'num': 2
                {'repertorie': 'Pointing at a single target with gaze shift', 'num': 180}]
 ```
 
-## Evaluation
+## Real-time Inference
 
 _Coming soon._
 
-## Real-time Inference
+## Evaluation
 
 _Coming soon._
 
