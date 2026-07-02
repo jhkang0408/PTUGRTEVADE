@@ -1,4 +1,5 @@
 import os
+import shutil
 import gc
 import time
 import math
@@ -42,10 +43,13 @@ class data_parser:
             for f in os.listdir(folder_split):
                 os.remove(os.path.join(folder_split, f))                        
 
-    def delete_data_dir(self):                       
-        for f in os.listdir(self.data_dir):    
-            os.remove(os.path.join(self.data_dir, f))
-        
+    def delete_data_dir(self):
+        # Ensure the parent 'data' folder exists (created if missing, left alone if present),
+        # then start this run's folder fresh: delete it if it exists, then (re)create it.
+        if os.path.exists(self.data_dir):
+            shutil.rmtree(self.data_dir)
+        os.makedirs(self.data_dir)
+
     def devide(self, repertorie_name, repertorie_num, folder_split, idx, num_targets=3, target_augmentation=True, joint_training=False):              
         if self.TENet is not None:
             self.TENet.eval()
