@@ -83,7 +83,15 @@ The table below illustrates the visualization:
 
 ## Data Export
 
-_Coming soon._
+Before getting started, please refer to the GIF below.
+
+![Data Export](Media/DataExport.gif)
+
+1\) Open the data scene (`Unity/Assets/Data/Scene.unity`).<br>
+2\) From the top menu bar, open **Motion Data Processing → Motion Exporter (TENet)** or **Motion Exporter (BP_GTNet)**.<br>
+3\) In the **Motion Exporter** window, select the split (**Train**/**Test**) and choose which data to export. Checking **Mirrored** (Train only) exports both the selected category and its mirrored version.<br>
+4\) Click **Export Data**.<br>
+5\) Verify the exported data under `Unity/Export/`.
 
 ## Evaluation
 
