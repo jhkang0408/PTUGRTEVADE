@@ -266,7 +266,7 @@ parser.add_argument('--use_cuda', default=True, type=lambda x: x.lower() in ['tr
 parser.add_argument('--gpu_id', type=int, default=0, help='GPU ID')
 parser.add_argument('--directory_id', type=int, default=0, help='Directory ID')
 parser.add_argument('--shuffle', default=True, type=lambda x: x.lower() in ['true', '1'])
-parser.add_argument('--epochs', type=int, default=100, help='Epochs')
+parser.add_argument('--epochs', type=int, default=10, help='Epochs')
 parser.add_argument('--batchSize', type=int, default=16, help='Batch Size')
 parser.add_argument('--windowSizeTENet', type=int, default=45, help='Window Size (TENet)')
 parser.add_argument('--headDepth', type=int, default=2, help='Head Depth')
