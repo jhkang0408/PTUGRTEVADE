@@ -15,7 +15,7 @@
 - [ ] Real-time inference
 
 ### DeepLearning
-- [x] Model (TENet, BP_GTNet)
+- [x] Model (TENet, BP-GTNet)
 - [x] Training
 - [ ] Evaluation
 - [x] Real-time inference
