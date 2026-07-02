@@ -8,16 +8,16 @@
 ## Checklist
 
 ### Unity
-- [x] Data loading
-- [x] Target labeling tool
-- [x] Dataset visualization
-- [x] Training / test data export
-- [ ] Real-time inference visualization
+- [x] Data import
+- [x] Data processing (e.g., target labeling)
+- [x] Data visualization
+- [x] Data export (for training/evaluation)
+- [ ] Real-time inference
 
 ### DeepLearning
 - [x] Training
 - [x] Model
-- [x] Inference
+- [x] Real-time inference
 - [ ] Evaluation
 
 ## Data
@@ -27,7 +27,7 @@ Download the data from Google Drive and unzip each archive to the specified loca
 | Data | Description | Location |
 | --- | --- | --- |
 | [Motion Capture Data](https://drive.google.com/file/d/1EzcetggbN8AMRDQDppRYPFkCk7DHdYQO/view?usp=sharing) | Raw motion capture data | `Unity/` |
-| [Target Labeled Data](https://drive.google.com/file/d/1qqO5hcnfvh7bA3q22fnZ2oR4pdn2oCWR/view?usp=sharing) | Motion capture data with all targets labeled | `Unity/Assets/Data/` |
+| [Target Labeled Data](https://drive.google.com/file/d/1qqO5hcnfvh7bA3q22fnZ2oR4pdn2oCWR/view?usp=sharing) | Target-labeled motion capture data | `Unity/Assets/Data/` |
 
 ## Data Import
 
