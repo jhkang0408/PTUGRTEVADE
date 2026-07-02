@@ -15,10 +15,10 @@
 - [ ] Real-time inference
 
 ### DeepLearning
+- [x] Model (TENet, BP_GTNet)
 - [x] Training
-- [x] Model
-- [x] Real-time inference
 - [ ] Evaluation
+- [x] Real-time inference
 
 ## Data
 
