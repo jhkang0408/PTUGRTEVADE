@@ -85,6 +85,14 @@ The table below illustrates the visualization:
 
 _Coming soon._
 
+## Evaluation
+
+_Coming soon._
+
+## Real-time Inference
+
+_Coming soon._
+
 ## Acknowledgements
 
 This repository contains pieces of code from the following repositories:
