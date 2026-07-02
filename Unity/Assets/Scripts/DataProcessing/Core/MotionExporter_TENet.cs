@@ -161,7 +161,7 @@ public class MotionExporter_TENet : MotionExporter
 			X.Feed(VerticalAngle, "Target3_Vertical (TENet)");
 			X.Feed(Distance, "Target3_Distance (TENet)");
 
-			/* Target (UMNet) */
+			/* Target (BP_GTNet) */
 			ET_Head = Head_Target - initial.Root.GetPosition();
 			ET_RightHand = RightHand_Target - initial.Root.GetPosition();
 			ET_LeftHand = LeftHand_Target - initial.Root.GetPosition();
@@ -179,9 +179,9 @@ public class MotionExporter_TENet : MotionExporter
 				VerticalAngle = Mathf.Atan2(Direction.y, Mathf.Sqrt(Direction.x * Direction.x + Direction.z * Direction.z));
 				Distance = Editor.IsPoint ? 1f : Mathf.Clamp(ET_Head.magnitude, 0f, 1f);
 			}
-			X.Feed(HorizontalAngle, "Head_Target_Horizontal (UMNet)");
-			X.Feed(VerticalAngle, "Head_Target_Vertical (UMNet)");
-			X.Feed(Distance, "Head_Target_Distance (UMNet)");
+			X.Feed(HorizontalAngle, "Head_Target_Horizontal (BP_GTNet)");
+			X.Feed(VerticalAngle, "Head_Target_Vertical (BP_GTNet)");
+			X.Feed(Distance, "Head_Target_Distance (BP_GTNet)");
 			// RightHand Target
 			Direction = ET_RightHand.normalized.GetRelativeDirectionTo(initial.Root);
 			if (current.RightHand_Target_name == "TargetNull")
@@ -196,9 +196,9 @@ public class MotionExporter_TENet : MotionExporter
 				VerticalAngle = Mathf.Atan2(Direction.y, Mathf.Sqrt(Direction.x * Direction.x + Direction.z * Direction.z));
 				Distance = Editor.IsPoint ? 1f : Mathf.Clamp(ET_RightHand.magnitude, 0f, 1f);
 			}
-			X.Feed(HorizontalAngle, "RightHand_Target_Horizontal (UMNet)");
-			X.Feed(VerticalAngle, "RightHand_Target_Vertical (UMNet)");
-			X.Feed(Distance, "RightHand_Target_Distance (UMNet)");
+			X.Feed(HorizontalAngle, "RightHand_Target_Horizontal (BP_GTNet)");
+			X.Feed(VerticalAngle, "RightHand_Target_Vertical (BP_GTNet)");
+			X.Feed(Distance, "RightHand_Target_Distance (BP_GTNet)");
 			// LeftHand Target
 			Direction = ET_LeftHand.normalized.GetRelativeDirectionTo(initial.Root);
 			if (current.LeftHand_Target_name == "TargetNull")
@@ -213,35 +213,35 @@ public class MotionExporter_TENet : MotionExporter
 				VerticalAngle = Mathf.Atan2(Direction.y, Mathf.Sqrt(Direction.x * Direction.x + Direction.z * Direction.z));
 				Distance = Editor.IsPoint ? 1f : Mathf.Clamp(ET_LeftHand.magnitude, 0f, 1f);
 			}
-			X.Feed(HorizontalAngle, "LeftHand_Target_Horizontal (UMNet)");
-			X.Feed(VerticalAngle, "LeftHand_Target_Vertical (UMNet)");
-			X.Feed(Distance, "LeftHand_Target_Distance (UMNet)"); 
+			X.Feed(HorizontalAngle, "LeftHand_Target_Horizontal (BP_GTNet)");
+			X.Feed(VerticalAngle, "LeftHand_Target_Vertical (BP_GTNet)");
+			X.Feed(Distance, "LeftHand_Target_Distance (BP_GTNet)"); 
 
-			/* Targets (UMNet) */
+			/* Targets (BP_GTNet) */
 			// Target 1
 			Direction = (Editor.Targets[0].position - initial.Root.GetPosition()).normalized.GetRelativeDirectionTo(initial.Root);
 			HorizontalAngle = Mathf.Atan2(Direction.x, Direction.z);
 			VerticalAngle = Mathf.Atan2(Direction.y, Mathf.Sqrt(Direction.x * Direction.x + Direction.z * Direction.z));
 			Distance = Editor.IsPoint ? 1f : Mathf.Clamp((Editor.Targets[0].position - initial.Root.GetPosition()).magnitude, 0f, 1f);
-			X.Feed(HorizontalAngle, "Target1_Horizontal (UMNet)");
-			X.Feed(VerticalAngle, "Target1_Vertical (UMNet)");
-			X.Feed(Distance, "Target1_Distance (UMNet)");
+			X.Feed(HorizontalAngle, "Target1_Horizontal (BP_GTNet)");
+			X.Feed(VerticalAngle, "Target1_Vertical (BP_GTNet)");
+			X.Feed(Distance, "Target1_Distance (BP_GTNet)");
 			// Target 2
 			Direction = (Editor.Targets[1].position - initial.Root.GetPosition()).normalized.GetRelativeDirectionTo(initial.Root);
 			HorizontalAngle = Mathf.Atan2(Direction.x, Direction.z);
 			VerticalAngle = Mathf.Atan2(Direction.y, Mathf.Sqrt(Direction.x * Direction.x + Direction.z * Direction.z));
 			Distance = Editor.IsPoint ? 1f : Mathf.Clamp((Editor.Targets[1].position - initial.Root.GetPosition()).magnitude, 0f, 1f);
-			X.Feed(HorizontalAngle, "Target2_Horizontal (UMNet)");
-			X.Feed(VerticalAngle, "Target2_Vertical (UMNet)");
-			X.Feed(Distance, "Target2_Distance (UMNet)");
+			X.Feed(HorizontalAngle, "Target2_Horizontal (BP_GTNet)");
+			X.Feed(VerticalAngle, "Target2_Vertical (BP_GTNet)");
+			X.Feed(Distance, "Target2_Distance (BP_GTNet)");
 			// Target 3
 			Direction = (Editor.Targets[2].position - initial.Root.GetPosition()).normalized.GetRelativeDirectionTo(initial.Root);
 			HorizontalAngle = Mathf.Atan2(Direction.x, Direction.z);
 			VerticalAngle = Mathf.Atan2(Direction.y, Mathf.Sqrt(Direction.x * Direction.x + Direction.z * Direction.z));
 			Distance = Editor.IsPoint ? 1f : Mathf.Clamp((Editor.Targets[2].position - initial.Root.GetPosition()).magnitude, 0f, 1f);
-			X.Feed(HorizontalAngle, "Target3_Horizontal (UMNet)");
-			X.Feed(VerticalAngle, "Target3_Vertical (UMNet)");
-			X.Feed(Distance, "Target3_Distance (UMNet)");
+			X.Feed(HorizontalAngle, "Target3_Horizontal (BP_GTNet)");
+			X.Feed(VerticalAngle, "Target3_Vertical (BP_GTNet)");
+			X.Feed(Distance, "Target3_Distance (BP_GTNet)");
 
 			/* Head Position (Decoder) */
 			X.Feed(current.Head.GetPosition().GetRelativePositionTo(initial.Root), "Head Position (Decoder)");

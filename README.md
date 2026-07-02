@@ -99,6 +99,10 @@ Before getting started, please refer to the GIF below.
 4\) Click **Export Data**.<br>
 5\) Verify the exported data under `Unity/Export/`.
 
+## Training
+
+1\) Create a `DeepLearning/data(raw)` folder and place the exported data inside it. `data(raw)` contains `BP_GTNet` and `TENet` folders, each of which contains `train` and `test` subfolders.
+
 ## Evaluation
 
 _Coming soon._
