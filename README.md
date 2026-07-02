@@ -31,6 +31,8 @@ Download the data from Google Drive and unzip each archive to the specified loca
 
 ## Data Import
 
+This step imports the raw motion capture data into Unity so that it can be processed and inspected.
+
 Before getting started, please refer to the GIF below.
 
 > **Note:** If you simply place the *Target Labeled Data* into `Unity/Assets/Data/`, you can skip this step. This import process is intended for cases where you need to import the *raw motion capture data* — for example, to label targets yourself or to annotate additional features.
@@ -83,13 +85,17 @@ The table below illustrates the visualization:
 
 ## Data Export
 
+This step exports the processed data into a format ready for PyTorch training.
+
 Before getting started, please refer to the GIF below.
+
+> **Note:** The TENet and BP-GTNet data are exported separately, each through its own exporter window.
 
 ![Data Export](Media/DataExport.gif)
 
 1\) Open the data scene (`Unity/Assets/Data/Scene.unity`).<br>
 2\) From the top menu bar, open **Motion Data Processing → Motion Exporter (TENet)** or **Motion Exporter (BP_GTNet)**.<br>
-3\) In the **Motion Exporter** window, select the split (**Train**/**Test**) and choose which data to export. Checking **Mirrored** (Train only) exports both the selected category and its mirrored version.<br>
+3\) In the **Motion Exporter** window, select the split (**Train**/**Test**) and choose which data to export. Checking **Mirrored** (training data only) exports both the selected category and its mirrored version.<br>
 4\) Click **Export Data**.<br>
 5\) Verify the exported data under `Unity/Export/`.
 
