@@ -14,3 +14,6 @@ venv/
 # ---- Logs / TensorBoard runs ----
 logs/
 runs/
+
+# ---- Media source videos (only the GIFs are committed) ----
+Media/*.mp4
