@@ -43,6 +43,17 @@ Before getting started, please refer to the GIF below.
 4\) Click **Import Motion**.<br>
 5\) Verify that the data has been correctly added under `Unity/Assets/Data/`.
 
+## Data Visualization
+
+| | |
+|---|---|
+| ![Explaining with pointing](Media/Explaining%20with%20pointing.gif) | ![Touching and gazing at two targets in sequence](Media/Touching%20and%20gazing%20at%20two%20targets%20in%20sequence.gif) |
+| **Explaining with pointing** | **Touching and gazing at two targets in sequence** |
+| ![Referencing multiple targets with diverse gestures (example 3)](Media/Referencing%20multiple%20targets%20with%20diverse%20gestures%20%28example3%29.gif) | ![Referencing multiple targets with diverse gestures (example 2)](Media/Referencing%20multiple%20targets%20with%20diverse%20gestures%20%28example2%29.gif) |
+| **Referencing multiple targets with diverse gestures (example 3)** | **Referencing multiple targets with diverse gestures (example 2)** |
+| ![Referencing multiple targets with diverse gestures (example 1)](Media/Referencing%20multiple%20targets%20with%20diverse%20gestures%20%28example1%29.gif) | ![Touching a single target with gaze shift](Media/Touching%20a%20single%20target%20with%20gaze%20shift.gif) |
+| **Referencing multiple targets with diverse gestures (example 1)** | **Touching a single target with gaze shift** |
+
 ## Data Export
 
 _Coming soon._
