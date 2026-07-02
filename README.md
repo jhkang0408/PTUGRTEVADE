@@ -31,7 +31,14 @@ Download the data from Google Drive and unzip each archive to the specified loca
 
 ## Data Import
 
+Before getting started, please refer to the GIF below.
+
 ![Data Import](Media/DataImport.gif)
+
+1. Open the data scene (`Unity/Assets/Data/Scene.unity`).
+2. From the top menu bar, open **Motion Data Processing → Motion Importer**.
+3. In the **Motion Importer** window, select the split (**Train** / **Test**) and choose which data to import.
+4. Click **Import Motion**.
 
 ## Data Export
 
