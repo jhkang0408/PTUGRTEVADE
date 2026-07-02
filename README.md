@@ -39,7 +39,7 @@ Before getting started, please refer to the GIF below.
 
 1\) Open the data scene (`Unity/Assets/Data/Scene.unity`).<br>
 2\) From the top menu bar, open **Motion Data Processing → Motion Importer**.<br>
-3\) In the **Motion Importer** window, select the split (**Train** / **Test**) and choose which data to import.<br>
+3\) In the **Motion Importer** window, select the split (**Train**/**Test**) and choose which data to import.<br>
 4\) Click **Import Motion**.<br>
 5\) Verify that the data has been correctly added under `Unity/Assets/Data/`.
 
