@@ -33,12 +33,15 @@ Download the data from Google Drive and unzip each archive to the specified loca
 
 Before getting started, please refer to the GIF below.
 
+> **Note:** If you simply place the *Target Labeled Data* into `Unity/Assets/Data/`, you can skip this step. This import process is intended for cases where you need to import the *raw motion capture data* — for example, to label targets yourself or to annotate additional features.
+
 ![Data Import](Media/DataImport.gif)
 
 1\) Open the data scene (`Unity/Assets/Data/Scene.unity`).<br>
 2\) From the top menu bar, open **Motion Data Processing → Motion Importer**.<br>
 3\) In the **Motion Importer** window, select the split (**Train** / **Test**) and choose which data to import.<br>
-4\) Click **Import Motion**.
+4\) Click **Import Motion**.<br>
+5\) Verify that the data has been correctly added under `Unity/Assets/Data/`.
 
 ## Data Export
 
