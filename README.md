@@ -101,7 +101,34 @@ Before getting started, please refer to the GIF below.
 
 ## Training
 
-1\) Create a `DeepLearning/data(raw)` folder and place the exported data inside it. `data(raw)` contains `BP_GTNet` and `TENet` folders, each of which contains `train` and `test` subfolders.
+1\) Create a `DeepLearning/data(raw)` folder and place the exported data inside it. The directory structure of `data(raw)` should be like:
+
+```text
+data(raw)
+├── BP_GTNet
+│   ├── train
+│   │   ├── <category>
+│   │   │   └── raw
+│   │   │       ├── Data.txt
+│   │   │       ├── DataNorm.txt
+│   │   │       ├── DataLabels.txt
+│   │   │       └── Sequences.txt
+│   │   └── ...
+│   └── test
+│       ├── <subject>
+│       │   └── <category>
+│       │       └── raw
+│       │           ├── Data.txt
+│       │           ├── DataNorm.txt
+│       │           ├── DataLabels.txt
+│       │           └── Sequences.txt
+│       └── ...
+└── TENet
+    ├── train
+    │   └── ...
+    └── test
+        └── ...
+```
 
 ## Evaluation
 
