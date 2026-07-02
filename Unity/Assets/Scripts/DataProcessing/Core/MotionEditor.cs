@@ -639,19 +639,17 @@ public class MotionEditor : MonoBehaviour
 					EditorGUILayout.EndHorizontal();
 					{
 						string Folder_temp = Target.Folder.Split('/')[Target.Folder.Split('/').Length - 1];
-						string[] folderParts = Folder_temp.Split(' ');
+						string folderLower = Folder_temp.ToLowerInvariant();
 
-						switch (folderParts[0])
+						// A category is "pointing" (large targets) or "touching" (small targets)
+						// based on whether its name contains "pointing" / "touching".
+						if (folderLower.Contains("pointing"))
 						{
-							case "Pointing":
-								Target.IsPoint = true;
-								break;
-							case "Touching":
-								Target.IsPoint = false;
-								break;
-							case "Transition":
-								Target.IsPoint = folderParts.Length > 1 && folderParts[1] == "(Pointing)";
-								break;
+							Target.IsPoint = true;
+						}
+						else if (folderLower.Contains("touching"))
+						{
+							Target.IsPoint = false;
 						}
 						Target.IsPoint = (bool)EditorGUILayout.Toggle("Pointing (True) or Touching (False)", Target.IsPoint);
 					}
