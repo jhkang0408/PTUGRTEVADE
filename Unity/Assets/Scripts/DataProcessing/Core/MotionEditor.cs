@@ -13,7 +13,15 @@ using UnityEditorInternal;
 public class MotionEditor : MonoBehaviour
 {
 
+	public const string DataRoot = "Assets/Data";
+	public enum DataSplit { Train, Test }
+
+	// Folder is the category folder the editor is currently pointed at (e.g. "Assets/Data/Test/161(HS)/Explaning with pointing").
+	// It is composed from Split / Subject / Category by the inspector, but other tools (e.g. the exporters) may also set it directly.
 	public string Folder = string.Empty;
+	public DataSplit Split = DataSplit.Train;
+	public string Subject = string.Empty;
+	public string Category = string.Empty;
 	public bool IsTrain = true;
 	public bool IsPoint = true;
 	public MotionData[] Files = new MotionData[0];
@@ -188,15 +196,112 @@ public class MotionEditor : MonoBehaviour
 		return Data == null ? null : Data.GetFrame(Timestamp);
 	}
 
+	// Root folder of the selected split: "Assets/Data/Train" or "Assets/Data/Test/<subject>".
+	public string GetSplitRoot()
+	{
+		if (Split == DataSplit.Train)
+		{
+			return DataRoot + "/Train";
+		}
+		return DataRoot + "/Test" + (string.IsNullOrEmpty(Subject) ? string.Empty : "/" + Subject);
+	}
+
+	// Category folder composed from the current Split / Subject / Category selection.
+	public string GetSelectedFolder()
+	{
+		return GetSplitRoot() + (string.IsNullOrEmpty(Category) ? string.Empty : "/" + Category);
+	}
+
+	// Sub-folder names (natural order) of an "Assets/..." folder on disk; empty if it does not exist.
+	public static string[] GetSubFolders(string assetFolder)
+	{
+		string absolute = Directory.GetParent(Application.dataPath).FullName.Replace("\\", "/") + "/" + assetFolder;
+		if (!Directory.Exists(absolute))
+		{
+			return new string[0];
+		}
+		DirectoryInfo[] dirs = new DirectoryInfo(absolute).GetDirectories();
+		string[] names = new string[dirs.Length];
+		for (int i = 0; i < dirs.Length; i++)
+		{
+			names[i] = dirs[i].Name;
+		}
+		System.Array.Sort(names, NaturalCompare);
+		return names;
+	}
+
+	// A category is "pointing" (large targets) or "touching" (small targets) based on its folder name.
+	// Returns the fallback when the name says neither.
+	public static bool DeriveIsPoint(string folder, bool fallback)
+	{
+		string lower = folder.ToLowerInvariant();
+		if (lower.Contains("pointing"))
+		{
+			return true;
+		}
+		if (lower.Contains("touching"))
+		{
+			return false;
+		}
+		return fallback;
+	}
+
+	// "1.csv" < "2.csv" < "10.csv" (digit runs compared numerically).
+	public static int NaturalCompare(string a, string b)
+	{
+		int i = 0;
+		int j = 0;
+		while (i < a.Length && j < b.Length)
+		{
+			if (char.IsDigit(a[i]) && char.IsDigit(b[j]))
+			{
+				int si = i;
+				while (i < a.Length && char.IsDigit(a[i])) i++;
+				int sj = j;
+				while (j < b.Length && char.IsDigit(b[j])) j++;
+				string na = a.Substring(si, i - si).TrimStart('0');
+				string nb = b.Substring(sj, j - sj).TrimStart('0');
+				if (na.Length != nb.Length)
+				{
+					return na.Length.CompareTo(nb.Length);
+				}
+				int c = string.CompareOrdinal(na, nb);
+				if (c != 0)
+				{
+					return c;
+				}
+			}
+			else
+			{
+				int c = a[i].CompareTo(b[j]);
+				if (c != 0)
+				{
+					return c;
+				}
+				i++;
+				j++;
+			}
+		}
+		return (a.Length - i).CompareTo(b.Length - j);
+	}
+
+	// Collects the MotionData assets of Folder (references only; a clip is loaded on demand by LoadData).
 	public void Import()
 	{
 		LoadData((MotionData)null);
+		if (!AssetDatabase.IsValidFolder(Folder))
+		{
+			Files = new MotionData[0];
+			Debug.LogWarning("Folder " + Folder + " does not exist. Download the data and place it under " + DataRoot + "/ first.");
+			return;
+		}
 		string[] assets = AssetDatabase.FindAssets("t:MotionData", new string[1] { Folder });
 		Files = new MotionData[assets.Length];
 		for (int i = 0; i < assets.Length; i++)
 		{
 			Files[i] = (MotionData)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(assets[i]), typeof(MotionData));
 		}
+		System.Array.Sort(Files, (x, y) => NaturalCompare(x.GetName(), y.GetName()));
 	}
 
 	public void LoadData(string name)
@@ -548,13 +653,36 @@ public class MotionEditor : MonoBehaviour
 		public string[] EnumNames = new string[0];
 		public string NameFilter = "";
 
+		private string[] Subjects = new string[0];
+		private string[] Categories = new string[0];
+		private string LastFolder = null;
+
 		void Awake()
 		{
 			Target = (MotionEditor)target;
 			Target.Refresh();
 			ComputeNames();
+			RefreshFolders();
 			Timestamp = Utility.GetTimestamp();
 			EditorApplication.update += EditorUpdate;
+		}
+
+		// Re-scans Assets/Data on disk for the Subject (Test split) and Category dropdowns.
+		public void RefreshFolders()
+		{
+			Subjects = Target.Split == DataSplit.Test ? GetSubFolders(DataRoot + "/Test") : new string[0];
+			if (Target.Split == DataSplit.Test)
+			{
+				if (System.Array.IndexOf(Subjects, Target.Subject) < 0)
+				{
+					Target.Subject = Subjects.Length > 0 ? Subjects[0] : string.Empty;
+				}
+			}
+			Categories = GetSubFolders(Target.GetSplitRoot());
+			if (System.Array.IndexOf(Categories, Target.Category) < 0)
+			{
+				Target.Category = Categories.Length > 0 ? Categories[0] : string.Empty;
+			}
 		}
 
 		void OnDestroy()
@@ -630,40 +758,73 @@ public class MotionEditor : MonoBehaviour
 				{
 					Utility.ResetGUIColor();
 
-					EditorGUILayout.BeginHorizontal();
-					Target.Folder = EditorGUILayout.TextField("Folder", "Assets/" + Target.Folder.Substring(Mathf.Min(7, Target.Folder.Length)));
-					if (Utility.GUIButton("Import", UltiDraw.DarkGrey, UltiDraw.White))
+					// ---- Data selection: Split -> Subject (Test only) -> Category -> Import ----
+					// Only the folder names are scanned here; a clip is loaded when it is selected below.
+					DataSplit split = (DataSplit)EditorGUILayout.EnumPopup("Split", Target.Split);
+					if (split != Target.Split)
 					{
-						Import();
+						Target.Split = split;
+						RefreshFolders();
 					}
-					EditorGUILayout.EndHorizontal();
+					if (Target.Split == DataSplit.Test)
 					{
-						string Folder_temp = Target.Folder.Split('/')[Target.Folder.Split('/').Length - 1];
-						string folderLower = Folder_temp.ToLowerInvariant();
-
-						// A category is "pointing" (large targets) or "touching" (small targets)
-						// based on whether its name contains "pointing" / "touching".
-						if (folderLower.Contains("pointing"))
+						if (Subjects.Length == 0)
 						{
-							Target.IsPoint = true;
-						}
-						else if (folderLower.Contains("touching"))
-						{
-							Target.IsPoint = false;
-						}
-						Target.IsPoint = (bool)EditorGUILayout.Toggle("Pointing (True) or Touching (False)", Target.IsPoint);
-					}
-					{
-						if (Target.Folder.Split('/')[2] == "Train")
-						{
-							Target.IsTrain = true;
+							EditorGUILayout.LabelField("Subject", "No subjects found under " + DataRoot + "/Test");
 						}
 						else
 						{
-							Target.IsTrain = false;
+							int index = Mathf.Max(0, System.Array.IndexOf(Subjects, Target.Subject));
+							int selected = EditorGUILayout.Popup("Subject", index, Subjects);
+							if (Subjects[selected] != Target.Subject)
+							{
+								Target.Subject = Subjects[selected];
+								RefreshFolders();
+							}
 						}
-						Target.IsTrain = (bool)EditorGUILayout.Toggle("Training Subject", Target.IsTrain);
 					}
+					if (Categories.Length == 0)
+					{
+						EditorGUILayout.LabelField("Category", "No categories found under " + Target.GetSplitRoot());
+					}
+					else
+					{
+						int index = Mathf.Max(0, System.Array.IndexOf(Categories, Target.Category));
+						int selected = EditorGUILayout.Popup("Category", index, Categories);
+						Target.Category = Categories[selected];
+					}
+					EditorGUILayout.BeginHorizontal();
+					EditorGUILayout.LabelField("Folder", string.IsNullOrEmpty(Target.Folder) ? "(none)" : Target.Folder);
+					if (Utility.GUIButton("Import", UltiDraw.DarkGrey, UltiDraw.White, 80f))
+					{
+						Target.Folder = Target.GetSelectedFolder();
+						Import();
+					}
+					if (Utility.GUIButton("Reload", UltiDraw.DarkGrey, UltiDraw.White, 80f))
+					{
+						RefreshFolders();
+					}
+					EditorGUILayout.EndHorizontal();
+
+					// Whenever the editor is pointed at a new folder (Import above, or an exporter setting Folder
+					// directly), derive IsTrain / IsPoint from it. Afterwards the buttons below may override IsPoint.
+					if (Target.Folder != LastFolder)
+					{
+						LastFolder = Target.Folder;
+						Target.IsTrain = Target.Folder.StartsWith(DataRoot + "/Train");
+						Target.IsPoint = DeriveIsPoint(Target.Folder, Target.IsPoint);
+					}
+
+					EditorGUILayout.BeginHorizontal();
+					if (Utility.GUIButton("Pointing", Target.IsPoint ? UltiDraw.Green : UltiDraw.DarkGrey, UltiDraw.White))
+					{
+						Target.IsPoint = true;
+					}
+					if (Utility.GUIButton("Touching", !Target.IsPoint ? UltiDraw.Green : UltiDraw.DarkGrey, UltiDraw.White))
+					{
+						Target.IsPoint = false;
+					}
+					EditorGUILayout.EndHorizontal();
 					Target.Root = (Transform)EditorGUILayout.ObjectField("Root", Target.Root, typeof(Transform), true);
 					Target.Head = (Transform)EditorGUILayout.ObjectField("Head", Target.Head, typeof(Transform), true);
 					Target.Gaze = (Transform)EditorGUILayout.ObjectField("Gaze", Target.Gaze, typeof(Transform), true);
