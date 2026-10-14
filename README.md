@@ -17,7 +17,7 @@
 ### DeepLearning
 - [x] Model (TENet, BP-GTNet)
 - [x] Training
-- [ ] Evaluation
+- [x] Evaluation
 - [x] Real-time inference
 
 ## Data
@@ -28,6 +28,8 @@ Download the data from Google Drive and unzip each archive to the specified loca
 | --- | --- | --- |
 | [Motion Capture Data](https://drive.google.com/file/d/1EzcetggbN8AMRDQDppRYPFkCk7DHdYQO/view?usp=sharing) | Raw motion capture data | `Unity/` |
 | [Target Labeled Data](https://drive.google.com/file/d/1qqO5hcnfvh7bA3q22fnZ2oR4pdn2oCWR/view?usp=sharing) | Target-labeled motion capture data | `Unity/Assets/Data/` |
+| [Evaluation Data](TODO_GOOGLE_DRIVE_LINK) | Exported test sets of TENet, BP-GTNet (and its w/o EE-Dual ablation) and the UGNet baseline | `DeepLearning/data(raw)/` |
+| [Estimated Targets](TODO_GOOGLE_DRIVE_LINK) | Targets estimated by TENet and the sampled avatar targets used in Table IV (`Estimated Targets(3)`, `(5)`, `(7)`) | `DeepLearning/` |
 
 ## Data Import
 
@@ -190,7 +192,62 @@ python inference.py
 
 ## Evaluation
 
-_Coming soon._
+This step reproduces the quantitative results of the paper (Tables III and IV) with the trained models in `DeepLearning/model(trained)/`. Every network of the paper is defined in `DeepLearning/model.py`:
+
+| Paper | Class in `model.py` | Checkpoint |
+| --- | --- | --- |
+| TENet (Ours) | `TENet` | `TENet_Ours_10.pt` |
+| TENet-Indep | `TENet_Indep` | `TENet_Indep_10.pt` |
+| Baseline (Real NVP + MLP) | `TENet_Baseline` | `TENet_Baseline_20.pt` |
+| Diffusion | `TENet_Diffusion` | `TENet_Diffusion_50.pt` |
+| BP-GTNet (Ours) | `BP_GTNet` | `BP_GTNet_Ours_90.pt` |
+| BP-GTNet w/o MD | `BP_GTNet(use_MD=False)` | `BP_GTNet_without_MD_90.pt` |
+| BP-GTNet w/o PAD | `BP_GTNet(use_PAD=False)` | `BP_GTNet_without_PAD_90.pt` |
+| BP-GTNet w/o EE-Dual | `BP_GTNet` (single end-effector representation) | `BP_GTNet_without_EE_Dual_90.pt` |
+| UGNet (Baseline) | `MPNet_MoE` + `UGNet_MoE` | `UGNet_MPNet_{right,left}_80.pt`, `UGNet_{right,left}_120.pt` |
+| FGD embedding | `ConvolutionalAutoEncoder` | `AutoEncoder_100.pt` |
+
+1\) Download the *Evaluation Data* and the *Estimated Targets* (see [Data](#data)) and place them as follows:
+
+```text
+DeepLearning
+├── data(raw)
+│   ├── TENet/test/<subject>/<category>/{raw, split}        # TENet test set (12 subjects)
+│   ├── BP_GTNet/test/<subject>/<category>/{raw, split}     # BP-GTNet test set
+│   ├── BP_GTNet_without_EE_Dual/test/...                   # test set exported with the single end-effector representation (w/o EE-Dual)
+│   └── UGNet/test/<subject>/<category>/{raw, split}        # test set in the feature format of the UGNet baseline
+├── Estimated Targets(3)
+│   └── <subject>/<category>/<trial>/<clip>.txt
+├── Estimated Targets(5)
+├── Estimated Targets(7)
+└── model(trained)
+```
+
+> **Note:** The test sets can also be exported from Unity (see [Data Export](#data-export), split **Test**); `split/` is generated automatically from `raw/` on the first run (or with `--rawDataSplit True`).
+
+2\) Target estimation (Table III). The candidates of each clip consist of its real targets, dummy targets up to `--targetNumber` targets and the null target; the accuracy is averaged over 10 trials with re-sampled dummy targets:
+
+```bash
+cd DeepLearning
+python test_TENet.py --model Ours --targetNumber 3      # --model Ours | Indep | Baseline | Diffusion, --targetNumber 3 | 5 | 7
+```
+
+3\) Estimated targets. `Estimated Targets(N)/` contains, for every test clip and trial, the targets estimated by TENet and the avatar targets sampled at new positions (one-to-one correspondence to the user's candidates). The provided files are the ones used in the paper; they can be regenerated with
+
+```bash
+python generate_estimated_targets.py --targetNumber 3  # --model Baseline | Diffusion | Indep writes 'Estimated Targets(3)_<model>'
+```
+
+Since the dummy and avatar targets are sampled randomly, regenerated targets give slightly different numbers in the next step.
+
+4\) Gesture translation (Table IV). FGD, TMP (position / rotation error) and DIP (pointing / touching error) of BP-GTNet, its ablations and the UGNet baseline, driven by the estimated targets. DIP-TE is also reported after the IK post-processing of the real-time system (the avatar's fingertip is pulled to the estimated target while the user keeps touching it; `--ik_threshold`, `--ik_rate`, `--ik_confidence`):
+
+```bash
+python test_BP_GTNet.py --model Ours --metric ALL --targetNumber 3   # --model Ours | without_MD | without_PAD | without_EE_Dual, --metric FGD | TMP | DIP | ALL
+python test_UGNet.py --metric ALL --targetNumber 3
+```
+
+Each script prints the mean and standard deviation over the trials (`--trial 10`). The FGD metric uses the auto-encoder trained with `train_AutoEncoder.py`; its temporary files are written under `DeepLearning/data/`.
 
 ## Acknowledgements
 

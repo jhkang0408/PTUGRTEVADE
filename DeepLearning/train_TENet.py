@@ -269,7 +269,7 @@ parser.add_argument('--shuffle', default=True, type=lambda x: x.lower() in ['tru
 parser.add_argument('--epochs', type=int, default=10, help='Epochs')
 parser.add_argument('--batchSize', type=int, default=16, help='Batch Size')
 parser.add_argument('--windowSizeTENet', type=int, default=45, help='Window Size (TENet)')
-parser.add_argument('--headDepth', type=int, default=2, help='Head Depth')
+parser.add_argument('--headDepth', type=int, default=3, help='Head Depth')
 parser.add_argument('--headSz', type=int, default=128, help='Head Sz')
 parser.add_argument('--featSz', type=int, default=128, help='Feature Sz')
 parser.add_argument('--depth', type=int, default=3, help='Depth')

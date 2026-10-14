@@ -15,5 +15,10 @@ venv/
 logs/
 runs/
 
+# ---- Data and evaluation inputs (downloaded separately, see README) ----
+DeepLearning/data/
+DeepLearning/data(raw)/
+DeepLearning/Estimated Targets*/
+
 # ---- Media source videos (only the GIFs are committed) ----
 Media/*.mp4
