@@ -237,7 +237,7 @@ python generate_estimated_targets.py --targetNumber 3  # --model Baseline | Diff
 
 Since the dummy and avatar targets are sampled randomly, regenerated targets give slightly different numbers in the next step.
 
-4\) Gesture translation (Table IV). FGD, TMP (position / rotation error) and DIP (pointing / touching error) of BP-GTNet, its ablations and the UGNet baseline, driven by the estimated targets. DIP-TE is also reported after the IK post-processing of the real-time system (the avatar's fingertip is pulled to the estimated target while the user keeps touching it; `--ik_threshold`, `--ik_rate`, `--ik_confidence`):
+4\) Gesture translation (Table IV). FGD, TMP (position / rotation error) and DIP (pointing / touching error) of BP-GTNet, its ablations and the UGNet baseline, driven by the estimated targets. DIP-TE is also reported after the IK post-processing of the real-time system (the avatar's fingertip is pulled to the estimated target while the user keeps touching it):
 
 ```bash
 python test_BP_GTNet.py --model Ours --metric ALL --targetNumber 3   # --model Ours | without_MD | without_PAD | without_EE_Dual, --metric FGD | TMP | DIP | ALL
