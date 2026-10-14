@@ -28,8 +28,7 @@ Download the data from Google Drive and unzip each archive to the specified loca
 | --- | --- | --- |
 | [Motion Capture Data](https://drive.google.com/file/d/1EzcetggbN8AMRDQDppRYPFkCk7DHdYQO/view?usp=sharing) | Raw motion capture data | `Unity/` |
 | [Target Labeled Data](https://drive.google.com/file/d/1qqO5hcnfvh7bA3q22fnZ2oR4pdn2oCWR/view?usp=sharing) | Target-labeled motion capture data | `Unity/Assets/Data/` |
-| [Evaluation Data](TODO_GOOGLE_DRIVE_LINK) | Exported test sets of TENet, BP-GTNet (and its w/o EE-Dual ablation) and the UGNet baseline | `DeepLearning/data(raw)/` |
-| [Estimated Targets](TODO_GOOGLE_DRIVE_LINK) | Targets estimated by TENet and the sampled avatar targets used in Table IV (`Estimated Targets(3)`, `(5)`, `(7)`) | `DeepLearning/` |
+| [Evaluation Data](TODO_GOOGLE_DRIVE_LINK) | Exported test sets (`data(raw)/`) and the estimated targets used in Table IV (`Estimated Targets(3)`, `(5)`, `(7)`) | `DeepLearning/` |
 
 ## Data Import
 
@@ -207,7 +206,7 @@ This step reproduces the quantitative results of the paper (Tables III and IV) w
 | UGNet (Baseline) | `MPNet_MoE` + `UGNet_MoE` | `UGNet_MPNet_{right,left}_80.pt`, `UGNet_{right,left}_120.pt` |
 | FGD embedding | `ConvolutionalAutoEncoder` | `AutoEncoder_100.pt` |
 
-1\) Download the *Evaluation Data* and the *Estimated Targets* (see [Data](#data)) and place them as follows:
+1\) Download the *Evaluation Data* (see [Data](#data)) and unzip it into `DeepLearning/`, so that the folders are laid out as follows:
 
 ```text
 DeepLearning
