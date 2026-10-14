@@ -28,7 +28,7 @@ Download the data from Google Drive and unzip each archive to the specified loca
 | --- | --- | --- |
 | [Motion Capture Data](https://drive.google.com/file/d/1EzcetggbN8AMRDQDppRYPFkCk7DHdYQO/view?usp=sharing) | Raw motion capture data | `Unity/` |
 | [Target Labeled Data](https://drive.google.com/file/d/1qqO5hcnfvh7bA3q22fnZ2oR4pdn2oCWR/view?usp=sharing) | Target-labeled motion capture data | `Unity/Assets/Data/` |
-| [Evaluation Data](TODO_GOOGLE_DRIVE_LINK) | Exported test sets (`data(raw)/`) and the estimated targets used in Table IV (`Estimated Targets(3)`, `(5)`, `(7)`) | `DeepLearning/` |
+| [Data (DeepLearning)](https://drive.google.com/file/d/1GUhGesaE2CKuAgxeRIxg436kWWQr66ai/view?usp=sharing) | Exported test sets (`data(raw)/`) and the estimated targets used in Table IV (`Estimated Targets(3)`, `(5)`, `(7)`) | `DeepLearning/` |
 
 ## Data Import
 
@@ -206,7 +206,7 @@ This step reproduces the quantitative results of the paper (Tables III and IV) w
 | UGNet (Baseline) | `MPNet_MoE` + `UGNet_MoE` | `UGNet_MPNet_{right,left}_80.pt`, `UGNet_{right,left}_120.pt` |
 | FGD embedding | `ConvolutionalAutoEncoder` | `AutoEncoder_100.pt` |
 
-1\) Download the *Evaluation Data* (see [Data](#data)) and unzip it into `DeepLearning/`, so that the folders are laid out as follows:
+1\) Download *Data (DeepLearning)* (see [Data](#data)) and unzip it so that `data(raw)/` and `Estimated Targets(3)/`, `(5)/`, `(7)/` are placed directly under `DeepLearning/`, next to `model(trained)/` and the scripts:
 
 ```text
 DeepLearning
@@ -222,7 +222,7 @@ DeepLearning
 └── model(trained)
 ```
 
-> **Note:** The test sets can also be exported from Unity (see [Data Export](#data-export), split **Test**); `split/` is generated automatically from `raw/` on the first run (or with `--rawDataSplit True`).
+> **Note:** The archive contains the test sets only; the training data are exported from Unity as described in [Training](#training). The test sets can also be re-exported from Unity (see [Data Export](#data-export), split **Test**); `split/` is generated automatically from `raw/` on the first run (or with `--rawDataSplit True`).
 
 2\) Target estimation (Table III). The candidates of each clip consist of its real targets, dummy targets up to `--targetNumber` targets and the null target; the accuracy is averaged over 10 trials with re-sampled dummy targets:
 
