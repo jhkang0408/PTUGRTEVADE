@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments - Jiho Kang">
+  <meta name="description" content="A neural network framework that estimates users' interaction targets in real time and translates upper-body gestures to virtual avatars part-wise, so the head and each hand can reference different targets in dissimilar XR telepresence environments.">
+  <meta name="keywords" content="Extended Reality, Telepresence, Virtual Avatar, Motion Retargeting, Gesture Translation, Target Estimation, Human Animation">
+  <meta name="author" content="Jiho Kang, Jihun Shin, Kwang Bin Lee, Dong Hwan Shin, Yuna Choi, Sung-Hee Lee">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KAIST">
+  <meta property="og:title" content="Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments">
+  <meta property="og:description" content="A neural network framework that estimates users' interaction targets in real time and translates upper-body gestures to virtual avatars part-wise, so the head and each hand can reference different targets in dissimilar XR telepresence environments.">
+  <meta property="og:url" content="https://jhkang0408.github.io/PTUGRTEVADE/">
+  <meta property="og:image" content="https://jhkang0408.github.io/PTUGRTEVADE/static/images/teaser.jpg">
+  <meta property="article:author" content="Jiho Kang">
+  <meta property="article:section" content="Research">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments">
+  <meta name="citation_author" content="Kang, Jiho">
+  <meta name="citation_author" content="Shin, Jihun">
+  <meta name="citation_author" content="Lee, Kwang Bin">
+  <meta name="citation_author" content="Shin, Dong Hwan">
+  <meta name="citation_author" content="Choi, Yuna">
+  <meta name="citation_author" content="Lee, Sung-Hee">
+
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="apple-touch-icon" href="static/images/icon.png">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments",
+    "author": [
+      {"@type": "Person", "name": "Jiho Kang", "affiliation": {"@type": "Organization", "name": "KAIST"}},
+      {"@type": "Person", "name": "Jihun Shin", "affiliation": {"@type": "Organization", "name": "KAIST"}},
+      {"@type": "Person", "name": "Kwang Bin Lee", "affiliation": {"@type": "Organization", "name": "KAIST"}},
+      {"@type": "Person", "name": "Dong Hwan Shin", "affiliation": {"@type": "Organization", "name": "KAIST"}},
+      {"@type": "Person", "name": "Yuna Choi", "affiliation": {"@type": "Organization", "name": "KAIST"}},
+      {"@type": "Person", "name": "Sung-Hee Lee", "affiliation": {"@type": "Organization", "name": "KAIST"}}
+    ],
+    "url": "https://jhkang0408.github.io/PTUGRTEVADE/",
+    "image": "https://jhkang0408.github.io/PTUGRTEVADE/static/images/teaser.jpg",
+    "keywords": ["Extended Reality", "Telepresence", "Virtual Avatar", "Motion Retargeting", "Gesture Translation", "Target Estimation"]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View Related Publications">
+      <i class="fas fa-flask"></i>
+      Related Publications
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>Gesture Retargeting</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <a href="https://jhkang0408.github.io/RRDMVAART/" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Real-time Retargeting of Deictic Motion to Virtual Avatars for Augmented Reality Telepresence</h5>
+            <span class="work-venue">IEEE ISMAR, 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://jhkang0408.github.io/RTUGVADTE/" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Real-time Translation of Upper-body Gestures to Virtual Avatars in Dissimilar Telepresence Environments</h5>
+            <span class="work-venue">IEEE TVCG, 2025</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+      <div class="dropdown-header dropdown-subheader">
+        <h4>Gesture Synthesis</h4>
+      </div>
+      <div class="works-list">
+        <a href="https://be9904.github.io/propgesture/" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>PropGesture: Few-shot Co-speech Gesture Synthesis for Handheld Props</h5>
+            <span class="work-venue">CGF, 2026</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments</h1>
+            <div class="is-size-5 publication-authors author-list">
+              <span class="author-block">
+                <a href="https://github.com/jhkang0408" target="_blank">Jiho Kang</a>,</span>
+              <span class="author-block">Jihun Shin,</span>
+              <span class="author-block">Kwang Bin Lee,</span>
+              <span class="author-block">Dong Hwan Shin,</span>
+              <span class="author-block">Yuna Choi,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=AVII4wsAAAAJ&hl=en" target="_blank">Sung-Hee Lee</a></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">KAIST<br>Under Review</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://jhkang0408.github.io/PTUGRTEVADE/"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://jhkang0408.github.io/PTUGRTEVADE/"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-ieee"></i>
+                    </span>
+                    <span>IEEE Xplore</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://jhkang0408.github.io/PTUGRTEVADE/"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://github.com/jhkang0408/PTUGRTEVADE" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="abstract-inline-image">
+          <img src="static/images/teaser.jpg" alt="XR telepresence between two dissimilar spaces A and B">
+        </div>
+
+        <div class="content has-text-justified abstract-text">
+          <p>
+            In extended reality telepresence, virtual avatars must accurately convey users' intent across dissimilar environments.
+            We propose a novel neural network framework for real-time, part-wise translation of upper-body gestures to virtual avatars in heterogeneous environments.
+            Our approach advances beyond prior methods in three key aspects: (1) real-time estimation of users' interaction targets; (2) unsupervised learning of target-agnostic motion features that better preserve fine-grained motion details; and (3) part-wise translation in which the head and individual hands can independently reference different targets simultaneously.
+            Together, these advances allow users to select arbitrary interaction targets from multiple candidates and reference different targets concurrently with different body parts, while enabling avatars to better preserve users' motion details.
+            These capabilities are realized through two novel networks: a Target Estimation Network that interprets sparse user tracking signals to infer target positions for the head and hands, and a Body-Part Gesture Translation Network that autoregressively generates avatar poses conditioned on these targets.
+            Despite being trained on data from a single individual, our framework translates natural upper-body gestures across diverse users and avatars.
+            We validate the effectiveness of our approach through comparisons with state-of-the-art methods, qualitative animation results, and a user evaluation in telepresence scenarios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="content has-text-centered">
+          <figure>
+            <img src="static/images/overview.png"
+              alt="Overview of the part-wise gesture translation framework"
+              style="width: 100%; height: auto;">
+            <figcaption class="figure-caption">
+              The system consists of two networks operating in sequence.
+              First, the <b>Target Estimation Network (TENet)</b> estimates per-body-part target positions by computing posterior densities over all candidate target combinations from user behavioral features.
+              Next, the <b>Body-Part Gesture Translation Network (BP-GTNet)</b> generates avatar motion through a dual end-effector representation:
+              the encoder extracts target-agnostic motion features from the user's end-effectors, while the decoder transforms them into the avatar's end-effectors conditioned on the estimated targets.
+              The generated end-effectors drive an IK solver to produce the final avatar pose, with autoregressive feedback ensuring temporal coherence.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Diverse users and avatars -->
+<section class="section sota-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Real-time Target Estimation and Part-wise Gesture Translation: Diverse Users and Avatars</h2>
+        <p class="section-subtitle">(Subject Height &ndash; 161, 172, 173, 174, 180, 187cm)</p>
+
+        <div class="sota-video-shell">
+          <button class="sota-carousel-btn prev" onclick="changeSotaVideo(this, -1)" aria-label="Previous video">
+            &#10094;
+          </button>
+
+          <div class="sota-video-viewport">
+            <div class="sota-slide is-active">
+              <p class="sota-slide-label">Test Subject 1 (161 cm, female, right-handed) &rarr; Avatar (175 cm)</p>
+              <video muted loop playsinline controls preload="metadata">
+                <source src="static/videos/subjects/subject_1.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 2 (172 cm, male, right-handed) &rarr; Avatar (172 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_2.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 3 (173 cm, male, left-handed) &rarr; Avatar (173 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_3.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 4 (174 cm, female, left-handed) &rarr; Avatar (178 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_4.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 5 (180 cm, male, right-handed) &rarr; Robot Avatar (189 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_5.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 6 (180 cm, male, right-handed) &rarr; Avatar (209 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_6.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 6 (180 cm, male, right-handed) &rarr; Smaller Avatar (148 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_6_small_avatar.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 9 (187 cm, male, right-handed) &rarr; Cartoon Avatar (195 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_9.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Test Subject 11 (173 cm, male, right-handed) &rarr; Cartoon Avatar (186 cm)</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/subjects/subject_11.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <div class="sota-counter"></div>
+
+          <h2 class="figure-caption" style="max-width: 880px;">
+            Upper-body gestures of test subjects with diverse heights, arm lengths, and handedness (left) and the avatar motions translated in real time by our framework (right).
+            Target objects are positioned differently for the user and the avatar, and the predicted targets for the head (red), right hand (green), and left hand (blue) are shown;
+            smaller spheres indicate higher estimation consistency, whereas larger ones reflect increased uncertainty during target transitions.
+            Although trained on the motion data of a single 170 cm subject, our framework generalizes to diverse users and avatars.
+          </h2>
+
+          <button class="sota-carousel-btn next" onclick="changeSotaVideo(this, 1)" aria-label="Next video">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TENet comparison -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">Comparison of TENet with Alternative Network Architectures</h2>
+      <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+      <video poster="" autoplay controls muted loop playsinline height="100%" preload="metadata">
+        <source src="static/videos/analysis/tenet_comparison.mp4" type="video/mp4">
+      </video>
+      <h2 class="figure-caption" style="max-width: 860px;">
+        Target estimation results of TENet (ours), Baseline (Real NVP with an MLP embedding network), Diffusion (a residual MLP-based diffusion regression model),
+        and TENet-Indep (separate flow networks for each body part), compared with the ground truth (GT).
+        Joint estimation across body parts lets TENet respond to target transitions most rapidly.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- UGNet comparison -->
+<section class="section sota-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Comparison of BP-GTNet (Ours) with UGNet (Baseline)</h2>
+
+        <div class="sota-video-shell">
+          <button class="sota-carousel-btn prev" onclick="changeSotaVideo(this, -1)" aria-label="Previous video">
+            &#10094;
+          </button>
+
+          <div class="sota-video-viewport">
+            <div class="sota-slide is-active">
+              <p class="sota-slide-label">Part-wise Translation <span class="audio-badge"><i class="fas fa-volume-up"></i> Audio</span></p>
+              <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+              <video muted loop playsinline controls preload="metadata">
+                <source src="static/videos/analysis/ugnet_comparison_2.mp4" type="video/mp4">
+              </video>
+              <p class="figure-caption" style="max-width: 820px;">
+                UGNet copies the non-dominant hand from the user's head coordinates directly to the avatar's head coordinates, preventing part-wise translation,
+                whereas BP-GTNet translates the head and both hands independently toward their own estimated targets.
+              </p>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Motion Detail and Stability <span class="audio-badge"><i class="fas fa-volume-up"></i> Audio</span></p>
+              <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/analysis/ugnet_comparison_1.mp4" type="video/mp4">
+              </video>
+              <p class="figure-caption">
+                BP-GTNet generates more stable and detailed motion than UGNet.
+              </p>
+            </div>
+          </div>
+
+          <div class="sota-counter"></div>
+
+          <button class="sota-carousel-btn next" onclick="changeSotaVideo(this, 1)" aria-label="Next video">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Ablation study -->
+<section class="section sota-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Ablation Study of BP-GTNet Architecture Design</h2>
+
+        <div class="sota-video-shell">
+          <button class="sota-carousel-btn prev" onclick="changeSotaVideo(this, -1)" aria-label="Previous video">
+            &#10094;
+          </button>
+
+          <div class="sota-video-viewport">
+            <div class="sota-slide is-active">
+              <p class="sota-slide-label">Motion Discretization (MD) <span class="audio-badge"><i class="fas fa-volume-up"></i> Audio</span></p>
+              <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+              <video muted loop playsinline controls preload="metadata">
+                <source src="static/videos/analysis/ablation_md.mp4" type="video/mp4">
+              </video>
+              <p class="figure-caption">
+                Motion discretization helps produce natural and stable motion. Without it, the network tends to generate unstable movements.
+              </p>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Part-wise Auxiliary Decoder (PAD) <span class="audio-badge"><i class="fas fa-volume-up"></i> Audio</span></p>
+              <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/analysis/ablation_pad.mp4" type="video/mp4">
+              </video>
+              <p class="figure-caption" style="max-width: 820px;">
+                Without the part-wise auxiliary decoder, the model fails to learn part-wise control,
+                and the avatar's right hand does not gesture toward its estimated target when it differs from the head's estimated target.
+              </p>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">Dual End-effector Representation (EE-Dual) <span class="audio-badge"><i class="fas fa-volume-up"></i> Audio</span></p>
+              <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/analysis/ablation_ee_dual.mp4" type="video/mp4">
+              </video>
+              <p class="figure-caption">
+                Without the dual end-effector representation, the model fails to learn target-agnostic motion features, resulting in hands directed toward empty space.
+              </p>
+            </div>
+          </div>
+
+          <div class="sota-counter"></div>
+
+          <button class="sota-carousel-btn next" onclick="changeSotaVideo(this, 1)" aria-label="Next video">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- XR applications -->
+<section class="section sota-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">XR Application Demo</h2>
+
+        <div class="sota-video-shell">
+          <button class="sota-carousel-btn prev" onclick="changeSotaVideo(this, -1)" aria-label="Previous video">
+            &#10094;
+          </button>
+
+          <div class="sota-video-viewport">
+            <div class="sota-slide is-active">
+              <p class="sota-slide-label">#1 Collaboration <span class="audio-badge"><i class="fas fa-volume-up"></i> Audio</span></p>
+              <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+              <video muted loop playsinline controls preload="metadata">
+                <source src="static/videos/application/collaboration.mp4" type="video/mp4">
+              </video>
+              <p class="figure-caption" style="max-width: 820px;">
+                Two distant users conduct a chemistry lesson, where three virtual atoms are augmented at different positions and scales in each environment.
+                Users explain molecular structures while gesturing toward different atoms simultaneously.
+              </p>
+            </div>
+
+            <div class="sota-slide">
+              <p class="sota-slide-label">#2 Teleoperation <span class="audio-badge"><i class="fas fa-volume-up"></i> Audio</span></p>
+              <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+              <video muted loop playsinline controls preload="none">
+                <source src="static/videos/application/teleoperation.mp4" type="video/mp4">
+              </video>
+              <p class="figure-caption" style="max-width: 820px;">
+                The user's left and right hand targets are estimated in real time, and corresponding bimanual pick-and-place motions are generated
+                for a humanoid robot avatar despite substantial differences in body size and object placement.
+              </p>
+            </div>
+          </div>
+
+          <div class="sota-counter"></div>
+
+          <button class="sota-carousel-btn next" onclick="changeSotaVideo(this, 1)" aria-label="Next video">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Limitation -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">Limitation: Target Distributions with Larger Dispersion</h2>
+      <p class="audio-hint">This video contains audio. Unmute the player to listen.</p>
+      <video poster="" controls muted loop playsinline height="100%" preload="metadata">
+        <source src="static/videos/analysis/limitation_target_dispersion.mp4" type="video/mp4">
+      </video>
+      <h2 class="figure-caption" style="max-width: 860px;">
+        Our training data covers a 180&deg; frontal range, and performance degrades outside it: target estimation worsens as the user's target is placed rearward,
+        and the translated gestures deteriorate as the avatar's target moves toward its rear, even when the estimated target itself is accurate.
+      </h2>
+    </div>
+  </div>
+</section>
+  </main>
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+  </html>
