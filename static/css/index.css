@@ -1724,3 +1724,26 @@ a:focus {
   margin-top: -0.25rem;
   margin-bottom: 0.5rem;
 }
+
+/* Long title: keep it on two lines on desktop screens */
+@media screen and (min-width: 1024px) {
+  .publication-title-wide {
+    font-size: min(2.35rem, 2.7vw) !important;
+    width: 96vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2.5rem;
+  }
+
+  .publication-title-wide .title-line {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .publication-title-wide {
+    margin-top: 3rem;
+  }
+}
