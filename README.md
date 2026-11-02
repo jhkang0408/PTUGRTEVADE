@@ -3,7 +3,7 @@
 
 > **Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments**<br>
 > Jiho Kang, Jihun Shin, Kwang Bin Lee, Dong Hwan Shin, Yuna Choi, and Sung-Hee Lee<br>
-> IEEE TVCG, Under Review
+> IEEE TVCG, 2026
 
 ## [Project Page](https://jhkang0408.github.io/PTUGRTEVADE/)
 
