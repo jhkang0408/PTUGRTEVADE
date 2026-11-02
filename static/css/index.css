@@ -1725,10 +1725,10 @@ a:focus {
   margin-bottom: 0.5rem;
 }
 
-/* Long title: keep it on two lines on desktop screens */
+/* Long title: keep it on three lines on desktop screens */
 @media screen and (min-width: 1024px) {
   .publication-title-wide {
-    font-size: min(2.35rem, 2.7vw) !important;
+    font-size: min(2.75rem, 3.3vw) !important;
     width: 96vw;
     position: relative;
     left: 50%;
