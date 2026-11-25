@@ -255,8 +255,6 @@ This repository contains pieces of code from the following repositories:
 
 ## Citation
 
-If you find this work useful, please cite our paper:
-
 ```bibtex
 @article{kang2026part,
   title={Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments},
