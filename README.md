@@ -252,3 +252,18 @@ Each script prints the mean and standard deviation over the trials (`--trial 10`
 
 This repository contains pieces of code from the following repositories:
 - [AI4Animation: Deep Learning for Character Control](https://github.com/sebastianstarke/AI4Animation/tree/master)
+
+## Citation
+
+If you find this work useful, please cite our paper:
+
+```bibtex
+@article{kang2026part,
+  title={Part-wise Translation of Upper-body Gestures via Real-time Target Estimation for Virtual Avatars in Dissimilar Environments},
+  author={Kang, Jiho and Shin, Jihun and Lee, Kwang Bin and Shin, Dong Hwan and Choi, Yuna and Lee, Sung-Hee},
+  journal={IEEE Transactions on Visualization and Computer Graphics},
+  year={2026},
+  publisher={IEEE},
+  doi={10.1109/TVCG.2026.3750370}
+}
+```
